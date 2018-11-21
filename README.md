@@ -52,3 +52,16 @@ web.xml이란?
 - 데이터 전송할때 xml 형태가 아닌 json 형태로 
 - MessageConverter를 통해 java 객체를 JSON으로 응답하게 되면 Ajax 통신이 가능
 
+3. default-servlet-handler
+<mvc:default-servlet-handler />만 있으면 되는 줄 알았는데 <mvc:annotation-driven /> 코드도 있어야 정상적으로 동작이 되더라구요.
+
+이 부분은 조금 더 알아봐야 할 것 같습니다.
+
+
+
+출처: http://victorydntmd.tistory.com/165 [victolee]
+- Handler Mapping에 해당하는 URL이 없으면 default-servlet으로 처리하겠다는 의미
+- 출처: http://victorydntmd.tistory.com/165 [victolee]
+- <mvc:default-servlet-handler />만 있으면 되는 줄 알았는데 <mvc:annotation-driven /> 코드도 있어야 정상적으로 동작
+
+
