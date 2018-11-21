@@ -22,6 +22,7 @@ http://memo.polypia.net/archives/2344
  http://unabated.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-ContextLoaderListener-%EC%9D%98-%EC%97%AD%ED%95%A0
 
 2. webAppRootKey 오류
+- http://memo.polypia.net/archives/2344
 - 한개의 컨테이너에 두개의 Webapp을 올릴 경우 나는 오류로 Log4j에서 라는 System.property(“webapp.root”)를 사용해서 발생하는 문제다.
 하나의 인스턴스내에서 System.property는 공유되니까.. 한마디로 전역변수 문제라고 할 수 있다. 해결방법은 web.xml에서 앱마다 저 키값을 
 고유하게 지정 해 주는 것이다. 
