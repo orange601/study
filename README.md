@@ -57,7 +57,7 @@ web.xml이란?
 - 출처: http://victorydntmd.tistory.com/165 [victolee]
 - <mvc:default-servlet-handler />만 있으면 되는 줄 알았는데 <mvc:annotation-driven /> 코드도 있어야 정상적으로 동작
 
-<mvc:resources>를 사용할 경우에는 필요없다.
+- <mvc:resources>를 사용할 경우에는 필요없다. 
 DispatcherServlet이 처리하지 못한 요청을 서블릿 컨테이너의 DefaultServlet에게 넘겨주는 역할을 하는 핸들러이다. [토스3] 스프링 3.0.4 <mvc:default-servlet-handler/>를 이용해서 UrlRewriteFilter없이 깔끔한 URL을 만들기 » Toby's Epril 참조.
 일단 DispatcherServlet을 그냥 /에 매핑한다. jsp와 같은 특정 확장자를 가진 URL말고는 모두 DispatcherServlet이 다 받는다. 일단 스프링의 기본 등록된 핸들러 매핑 전략을 이용해서 컨트롤러를 매핑해본다. @Controller가 담당하는 URL이라면 그리로 넘어갈거고. 그런데 그러다보면 /js/jquery.js 처럼 컨트롤러에 매핑안되는 URL이 나올 것이다. 이런 나머지 모든 URL은 <mvc:default-servlet-handler/>이 내부적으로 등록해주는 DefaultServletHttpRequestHandler이 담당한다. 이 핸들러(컨트롤러)는 /**로 매핑되어있다. 대신 핸들러 매핑 우선순위가 가장 낮다. 따라서 애노테이션 매핑 등등을 거쳐서 다 실패한 URL만 넘어온다. 그리고 DefaultServletHttpRequestHandler는 이 요청을 자신이 직접 스태틱 리소스를 읽어서 처리하는 것이 아니라, 원래 서버가 제공하는 디폴트 서블릿으로 넘겨버린다. 그러면 서버의 기본 디폴트 서블릿이 동작해서 스태틱리소스를 처리해버리는 것이다. 일단 스프링이 다 받고 스프링이 처리 못하는 건 다시 서버의 디폴트 서블릿으로 넘긴다는 아이디어이다.
 
